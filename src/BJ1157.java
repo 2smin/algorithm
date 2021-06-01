@@ -1,48 +1,40 @@
 import java.util.*;
+import java.util.Map.Entry;
 
-public class BJ1157 {
+public class BJ1157{
 
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
 
-        String word = scan.nextLine();
+        String word = scan.nextLine().toUpperCase();
 
-        word.toUpperCase();
+        Map wordMap = new HashMap<>();
 
-        String[] wordList = word.split("");
-
-        Arrays.sort(wordList);
-        //가장 많은 알파벳 저장
-        String alphabet = wordList[0];
-
-        int count = 1;
-
-        int max = 0;
-
-        boolean same = false;
-
-        for(int i=0; i< wordList.length-1; i++) {
-
-            if (wordList[i].equals(wordList[i + 1])) {
-                count++;
-            } else {
-                count = 1;
+        for(int i=0; i<word.length(); i++){
+            if(!wordMap.containsKey(word.charAt(i))){
+                wordMap.put(word.charAt(i), 1);
+            }else{
+                wordMap.put(word.charAt(i), (int)wordMap.get(word.charAt(i)) +1);
             }
-            System.out.println(wordList[i] + ": " + count);
-            if (count > max) {
-                alphabet = wordList[i];
-                same = false;
-                max = count;
-                count = 1;
-            } else if (count == max) {
-                same = true;
-            } else {
+        }
 
+        List<Entry<Character,Integer>> valueList = new ArrayList<Entry<Character, Integer>>(wordMap.entrySet());
+        Collections.sort(valueList, new Comparator<Entry<Character, Integer>>() {
+            @Override
+            public int compare(Entry<Character, Integer> o1, Entry<Character, Integer> o2) {
+                return -o1.getValue().compareTo(o2.getValue());
             }
+        });
 
-            System.out.println("max: " + max);
+        if(valueList.size() == 1){
+            System.out.println(valueList.get(0).getKey());
+        }else{
+            if(valueList.get(0).getValue().equals(valueList.get(1).getValue())){
+                System.out.println("?");
+            }else{
+                System.out.println(valueList.get(0).getKey());
+            }
         }
     }
-
 }
