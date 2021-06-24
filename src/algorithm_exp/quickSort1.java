@@ -11,7 +11,7 @@ public class quickSort1 {
 
     public static void main(String[] args) {
 
-        int[] arr = {5, 4, 7, 6, 8, 9, 10, 2, 3, 1};
+        int[] arr = {5, 4, 7, 6, 8, 9, 10, 2, 6, 1};
 
        qSort(arr, 0, 9);
 
@@ -19,6 +19,11 @@ public class quickSort1 {
     }
 
     public static void qSort(int[] arr, int start, int end){
+        System.out.println("start: " + start);
+        System.out.println("end: " + end);
+        if(start>=end){
+            return;
+        }
 
         int i = start + 1;
         int j = end;
@@ -27,9 +32,9 @@ public class quickSort1 {
 
         while(i<=j){
 
-            while(arr[i]<=arr[pivot]){ i++; } // 좌측 -> arr[pivot]보다 큰 값을 만날때까지 i 증가
+            while(i <= end && arr[i]<=arr[pivot]){ i++; } // 좌측 -> arr[pivot]보다 큰 값을 만날때까지 i 증가
 
-            while(arr[j]>=arr[pivot] && j > start){ j--; } // 우측 -> arr[pivot] 보다 작은 값을 만날때까지 j 감소
+            while(j > start && arr[j]>=arr[pivot]){ j--; } // 우측 -> arr[pivot] 보다 작은 값을 만날때까지 j 감소
 
             if(i>j){    // i와 j가 이동하면서 엇갈렸다면 arr[pivot]과 arr[j]의 위치를 변경
                 tmp = arr[pivot];
@@ -40,9 +45,11 @@ public class quickSort1 {
                 arr[j] = arr[i];
                 arr[i] = tmp;
             }
+
+            System.out.println(Arrays.toString(arr));
         }
 
-        if(start < j-1 ){ qSort(arr, start, j-1); } //좌측 파티션 다시 qSort 재귀호출
-        if(j+1 < end){ qSort(arr, j+1, end); }      // 우측 파티션 다시 qSort 재귀호출
+        qSort(arr, start, j-1); //좌측 파티션 다시 qSort 재귀호출
+        qSort(arr, j+1, end);       // 우측 파티션 다시 qSort 재귀호출
     }
 }
