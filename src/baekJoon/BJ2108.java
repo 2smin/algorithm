@@ -39,7 +39,7 @@ public class BJ2108 {
             arr[i] = num;
         }
 
-        qSort(arr,0,arr.length-1);
+        Arrays.sort(arr);
 
         System.out.println(average(arr));
         System.out.println(medium(arr));
@@ -48,36 +48,37 @@ public class BJ2108 {
 
     }
 
-    public static void qSort(int[]arr, int start, int end){
-
-        if(start >= end){
-            return;
-        }
-        int pivot = start;
-        int m = start+1;
-        int n = end;
-        int tmp = 0;
-
-        while(m<=n){
-
-            while(m <= end && arr[m] <= arr[pivot]){m++;}
-            while(n > start && arr[n] >= arr[pivot]){n--;}
-
-            if(m>n){
-                tmp = arr[n];
-                arr[n] = arr[pivot];
-                arr[pivot] = tmp;
-            }else{
-                tmp = arr[m];
-                arr[m] = arr[n];
-                arr[n] = tmp;
-
-            }
-        }
-
-        qSort(arr,start,n-1);
-        qSort(arr, n+1, end);
-    }
+//  QuickSort로 하면 시간 초과가 나온다..?
+//    public static void qSort(int[]arr, int start, int end){
+//
+//        if(start >= end){
+//            return;
+//        }
+//        int pivot = start;
+//        int m = start+1;
+//        int n = end;
+//        int tmp = 0;
+//
+//        while(m<=n){
+//
+//            while(m <= end && arr[m] <= arr[pivot]){m++;}
+//            while(n > start && arr[n] >= arr[pivot]){n--;}
+//
+//            if(m>n){
+//                tmp = arr[n];
+//                arr[n] = arr[pivot];
+//                arr[pivot] = tmp;
+//            }else{
+//                tmp = arr[m];
+//                arr[m] = arr[n];
+//                arr[n] = tmp;
+//
+//            }
+//        }
+//
+//        qSort(arr,start,n-1);
+//        qSort(arr, n+1, end);
+//    }
 
     public static int average(int[] arr){
         double sum = 0;
