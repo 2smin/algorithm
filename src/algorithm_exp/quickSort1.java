@@ -11,7 +11,7 @@ public class quickSort1 {
 
     public static void main(String[] args) {
 
-        int[] arr = {5, 4, 7, 6, 8, 9, 10, 2, 6, 1};
+       int[] arr = {5, 4, 7, 6, 8, 9, 10, 2, 6, 1};
 
        qSort(arr, 0, 9);
 
