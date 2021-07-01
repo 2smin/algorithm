@@ -19,7 +19,7 @@ public class Q2 {
 
         System.out.println(BFS(num));
 
-        System.out.println(Arrays.toString(arr26));
+        System.out.println(DP(num));
 
     }
 
@@ -32,27 +32,26 @@ public class Q2 {
         while(!queue.isEmpty()){
 
             int removed = queue.remove();
-
             if(removed == num){
                 output = arr[removed];
                 break;}
 
-            if(arr[removed+1] == 0){
+            if(removed+1 < 30001 && arr[removed+1] == 0){
                 queue.offer(removed+1);
                 arr[removed+1] =  arr[removed]+1;
             }
 
-            if(arr[removed*2] == 0){
+            if(removed*2 < 30001 && arr[removed*2] == 0){
                 queue.offer(removed*2);
                 arr[removed*2] =  arr[removed]+1;
             }
 
-            if(arr[removed*3] == 0){
+            if(removed*3 < 30001 && arr[removed*3] == 0){
                 queue.offer(removed*3);
                 arr[removed*3] =  arr[removed]+1;
             }
 
-            if(arr[removed*5] == 0){
+            if(removed*5 < 30001 && arr[removed*5] == 0){
                 queue.offer(removed*5);
                 arr[removed*5] =  arr[removed]+1;
             }
@@ -60,5 +59,28 @@ public class Q2 {
         }
 
         return output;
+    }
+
+    public static int DP(int num){
+        int[] arr = new int[30001];
+        for(int i=2; i<num+1; i++){
+
+            arr[i] = arr[i-1] +1;
+
+            if(i%2 == 0){
+                arr[i] = Math.min(arr[i],arr[i/2]+1);
+            }
+
+            if(i%3 == 0){
+                arr[i] = Math.min(arr[i],arr[i/3]+1);
+            }
+
+            if(i%5 == 0){
+                arr[i] = Math.min(arr[i],arr[i/5]+1);
+            }
+
+        }
+
+        return arr[num];
     }
 }
