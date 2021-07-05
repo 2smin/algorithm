@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class BJ10841 {
+public class BJ10814 {
 
     static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     static StringBuilder sb = new StringBuilder();
