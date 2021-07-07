@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MergeSort2 {
 
-    static int[] sorted = new int[8];
+    static int[] sorted = new int[10];
 
     public static void main(String[] args){
 
