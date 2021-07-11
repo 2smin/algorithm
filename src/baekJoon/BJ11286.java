@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class BJ11286 {
+public class    BJ11286 {
 
     static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     static StringBuilder sb = new StringBuilder();

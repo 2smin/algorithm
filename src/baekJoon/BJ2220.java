@@ -19,7 +19,7 @@ public class BJ2220 {
             list.add(i+1);
         }
 
-//        System.out.println(list);
+        System.out.println(list);
 
         for(int i=2; i<num+1; i++){
 //            System.out.println("i: " + i);

@@ -5,10 +5,6 @@ import java.util.PriorityQueue;
 
 public class PG42627 {
 
-    public static void main(String[] args) {
-
-    }
-
     public static int solution(int[][] jobs){
 
         //총 걸린 시간

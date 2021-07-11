@@ -41,6 +41,7 @@ public class heapSort_upstrm {
                 c = root*2 +1;
                 if(c<i-1 && arr[c] < arr[c+1]){ c++;}
 
+                //c<i == 최대값 지정 넘어가지 않게
                 if(c<i && arr[c] > arr[root]){
                     int tmp2 = arr[root];
                     arr[root] = arr[c];
