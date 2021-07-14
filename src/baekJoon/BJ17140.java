@@ -136,6 +136,8 @@ public class BJ17140 {
         list = calR(list);
         list = reverseMatrix(list);
 
+
+
         return list;
     }
 
