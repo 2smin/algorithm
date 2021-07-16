@@ -53,6 +53,7 @@ public class PG42839 {
         return count;
     }
 
+    //소수 배열 생성
     public static int[] makePrimeArr(int length) {
 
         //소수배열만들기
@@ -75,6 +76,7 @@ public class PG42839 {
         return primeNum;
     }
 
+    // counting 배열 생성
     public static int[] makeCountArr(String numbers) {
 
         int[] numCount = new int[10];

@@ -11,7 +11,6 @@ public class PG43238_2 {
     }
 
     public static long solution(int n, int[] times) {
-        long answer = 0;
         long max = getMax(times,n);
 
         long left = 0;
