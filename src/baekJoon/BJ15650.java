@@ -3,10 +3,8 @@ package baekJoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashMap;
 
-public class BJ15649 {
+public class BJ15650 {
 
     static BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
     static StringBuilder sb = new StringBuilder();
@@ -41,12 +39,12 @@ public class BJ15649 {
             return;
         }
 
-        for(int i=1; i<=N; i++){
+        for(int i=n+1; i<=N; i++){
 
             if(!visited[i]){
                 visited[i] = true;
                 nums[depth] = i;
-                backTracking(n,depth+1);
+                backTracking(i,depth+1);
                 visited[i] = false;
             }
         }
