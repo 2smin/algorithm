@@ -35,8 +35,13 @@ public class BJ2805 {
 
             while(sum != M){
 
+
                 sum = 0;
                 middle = (end+start)/2;
+                System.out.println("start: " + start);
+                System.out.println("middle: " + middle);
+                System.out.println("end: " + end);
+                System.out.println();
 
                 for(int i=0; i<trees.length; i++){
                     if(trees[i] >= middle){

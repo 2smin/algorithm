@@ -38,9 +38,13 @@ public class BJ1654 {
 
             cnt = 0;
             long middle = (start+end)/2;
+            System.out.println("start: " + start);
+            System.out.println("middle: " + middle);
+            System.out.println("end: " + end);
 
-            //잘라서 갯수를 센다
             cnt = getCnt(middle);
+            System.out.println("cnt: " + cnt);
+            System.out.println();
 
             if(cnt < N){
                 end = middle-1;
@@ -48,6 +52,9 @@ public class BJ1654 {
                 remMiddle = middle;
                 start = middle+1;
             }
+
+
+            //잘라서 갯수를 센다
         }
         System.out.println(remMiddle);
     }

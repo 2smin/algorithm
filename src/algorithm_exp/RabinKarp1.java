@@ -4,11 +4,11 @@ public class RabinKarp1 {
 
     public static void main(String[] args) {
 
-        String T = "abcddefderwwbbfsfderww";
-        String P = "derww";
+        String T = "wefawfafwefarherhrrh";
+        String P = "farher";
 
-        int textSize = T.length();
-        int patternSize  = P.length();
+        int textSize = T.length(); //
+        int patternSize  = P.length(); //5
         int textHash = 0, patternHash = 0, power = 1;
 
 
@@ -17,8 +17,8 @@ public class RabinKarp1 {
 
             if(i==0){
                 for(int j=0; j<patternSize; j++){
-                    textHash += (T.charAt(patternSize - (1+j)) * power);
-                    patternHash += P.charAt(patternSize - (1+j)) * power;
+                    textHash += (T.charAt(patternSize - (1+j)) * power); // 123141
+                    patternHash += P.charAt(patternSize - (1+j)) * power; // 4424
                     if(j < patternSize-1) power = power * 2;
                 }
 
