@@ -1,7 +1,5 @@
 package test.SixShop210722;
 
-import javafx.scene.web.WebHistory;
-
 import java.util.*;
 
 public class Task2 {
