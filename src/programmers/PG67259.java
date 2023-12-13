@@ -22,7 +22,13 @@ public class PG67259 {
         PG67259 pg = new PG67259();
 
         int[][] board =
-                {{0,0,0,0,0,0,0,1},{0,0,0,0,0,0,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,1,0,0,0},{0,0,0,1,0,0,0,1},{0,0,1,0,0,0,1,0},{0,1,0,0,0,1,0,0},{1,0,0,0,0,0,0,0}}
+//                {{0,0,1,0},{0,0,0,0},{0,1,0,1},{1,0,0,0}}
+
+//                {{0,0,0},{0,0,0},{0,0,0}}
+
+//                {{0,0,0,0,0,0,0,1},{0,0,0,0,0,0,0,0},{0,0,0,0,0,1,0,0},{0,0,0,0,1,0,0,0},{0,0,0,1,0,0,0,1},{0,0,1,0,0,0,1,0},{0,1,0,0,0,1,0,0},{1,0,0,0,0,0,0,0}}
+        {{0,0,0,0,0,0},{0,1,1,1,1,0},{0,0,1,0,0,0},{1,0,0,1,0,1},{0,1,0,0,0,1},{0,0,0,0,0,0}}
+
         ;
 
         System.out.println(pg.solution(board));
@@ -38,95 +44,88 @@ public class PG67259 {
         map = board;
         int[][]visitied = new int[board.length][board.length];
 
-        dfs(0,0,0,0,0, true, visitied);
+        dfs(0,0,0,0,0, true);
 
-        Arrays.stream(map).forEach(ints -> { Arrays.stream(ints).forEach(num -> System.out.printf(String.format("%-7s", num)));
-            System.out.println();});
-        int answer = map[board.length-1][board.length-1];
-        return answer;
+//        Arrays.stream(map).forEach(ints -> { Arrays.stream(ints).forEach(num -> System.out.printf(String.format("%-7s", num)));
+//            System.out.println();});
+//        int answer = map[board.length-1][board.length-1];
+        return min;
     }
 
-    public void dfs(int x, int y, int money, int preX, int preY, boolean startNode, int[][] visited){
-        System.out.println();
+    public void dfs(int x, int y, int money, int preX, int preY, boolean startNode){
+//        System.out.println();
         for(int i=0; i<4; i++){
-
+            int currentMoney = money;
             int ddx = x + dx[i];
             int ddy = y + dy[i];
 
-            System.out.println("i: " + i);
-            System.out.println("preX : " + preX + " preY : " + preY);
-            System.out.println("x : " + x + " y : " + y);
-            System.out.println("nexX : " + ddx + " nexY : " + ddy);
+//            System.out.println("i: " + i);
+//            System.out.println("preX : " + preX + " preY : " + preY);
+//            System.out.println("x : " + x + " y : " + y);
+//            System.out.println("nexX : " + ddx + " nexY : " + ddy);
 
             //map 범위 넘어가면 취소
             if(ddx < 0 || ddx >= map.length || ddy < 0 || ddy >=map.length) {
-                System.out.println("out of range");
-                System.out.println();
-                continue;
-            }
-
-            if(visited[ddx][ddy] == 1){
-                System.out.println("visited");
-                System.out.println();
-                continue;
-            }
-//
-//            if(preX == ddx && preY == ddy){
-//                System.out.println("preX == ddx && preY == ddy");
+//                System.out.println("out of range");
 //                System.out.println();
+                continue;
+            }
+            //벽인지
+            if(map[ddx][ddy] == 1){
+//                System.out.println("block");
+//                System.out.println();
+                continue;
+            }
+            //방문했는지
+//            if(visited[ddx][ddy] == 1){
+////                System.out.println("visited");
+////                System.out.println();
 //                continue;
 //            }
 
-            //현재금액보다 가격이 낮은지 체크?
+            //곡선인지 계산
 
-            //곡선
-            if(map[x][y] != 0 && map[x][y] < money){
-                System.out.println("map[x][y] :" + map[x][y]);
-                System.out.println("money :" + money);
-                System.out.println();
-                continue;
-            }
-            if(map[ddx][ddy] == 1){
-                System.out.println("block");
-                System.out.println();
-                continue;
-            }
 
-            //현재 노드 계산
+            if(preX != ddx && preY != ddy){
+//                System.out.println("curve");
+//                System.out.println();
+//
+//                System.out.println("current visit : " + map[x][y] + " next visit : " + (currentMoney));
+                //이전이 더 비싸면 바꾼다
+                if(map[x][y] >= currentMoney){
+                    currentMoney += 600;
+                    map[x][y] = currentMoney;
+                }else if(map[x][y] == 0){ //이전이 더 작으면 안바꾼다. 근데 0은 바꾼다
+                    currentMoney += 600;
+                    map[x][y] = currentMoney;
+                }else{
+                    System.out.println();
+                    continue;
+                }
+            }else{ //직선이면
+//                System.out.println("current visit : " + map[x][y] + " next visit : " + (currentMoney));
+                if(map[x][y] >= currentMoney){
+                    currentMoney += 100;
+                    map[x][y] = currentMoney;
+                }else if(map[x][y] == 0){ //이전이 더 작으면 안바꾼다. 근데 0은 바꾼다
+                    currentMoney += 100;
+                    map[x][y] = currentMoney;
+                }else{
 
-            if(x==map.length-1 && y==map.length-1){
-                System.out.println("end");
-                map[x][y] = money + 100;
-                min = Math.min(min, money);
-                continue;
-            }
-
-            if(!startNode){
-                if(preX != ddx && preY != ddy){
-                    money += 500;
+                    continue;
                 }
             }
 
-            if(map[x][y] != 0 && map[x][y] < money){
-                System.out.println("map[x][y] :" + map[x][y]);
-                System.out.println("money :" + money);
-                System.out.println();
+            //도착했으면
+            if(ddx==map.length-1 && ddy==map.length-1){
+                min = Math.min(min, map[x][y]);
+//                System.out.println("arrived");
                 continue;
-            }else if (map[x][y] != 0 && map[x][y] > money + 100){
-                money += 100;
-                map[x][y] = money;
-            }else{
-                money += 100;
-                map[x][y] = money;
             }
 
-            //이전 노드 계산
-
-
-            visited[x][y] = 1;
-
-
-            dfs(ddx,ddy,money, x,y,false,deepCopy(visited));
+//            System.out.println("doNext");
+//            visited[x][y] = 1;
+            dfs(ddx,ddy,currentMoney, x,y,false);
         }
     }
 
