@@ -57,31 +57,23 @@ public class boj18352 {
 
         int from = X;
         djk[from] = 0;
-        Queue<Node18> queue = new LinkedList<>();
-        for(Map.Entry<Integer,Node18> ent : listMap.entrySet()){
-            if(ent.getValue().num == X) continue;
-            queue.offer(ent.getValue());
-        }
-
-        int cnt = 0;
+        Queue<Node18> queue = new PriorityQueue<>();
+        queue.offer(listMap.get(from));
         while(!queue.isEmpty()){
 
-            Node18 currentNode;
-            if(cnt == 0){
-                currentNode = listMap.get(X);
-            }else{
-                currentNode = queue.poll();
-            }
+            Node18 currentNode = queue.poll();
             visited[currentNode.num] = 1;
+
             if(currentNode.child.size() == 0) { //방문 가능한 노드가 없으면
                 continue;
             }
             for(int i : currentNode.child){ //방문 가능한 노드들에 대해서
                 djk[i] = Math.min(djk[currentNode.num]+1, djk[i]); //최단거리 갱신
                 //queue에 넣는다 근데 한번 넣은건 또 넣으면 안됌
+                if(visited[i] != 1){
+                    queue.offer(listMap.get(i));
+                }
             }
-            cnt++;
-
             //다음 방문하지 않은 곳에서 가장 가까운곳
         }
 
@@ -98,7 +90,7 @@ public class boj18352 {
         if(answer.isEmpty()){
             System.out.println(-1);
         }else{
-            answer.stream().forEach(System.out::println);
+            answer.stream().sorted().forEach(System.out::println);
         }
 
 
